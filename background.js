@@ -1,6 +1,6 @@
 chrome.runtime.onInstalled.addListener(() => {
     chrome.action.setBadgeText({
-        text: "OFF",
+        text: "",
     });
 });
 
@@ -24,13 +24,16 @@ chrome.action.onClicked.addListener(async (tab) => {
     if (tab.url.startsWith(newReleaseURL)) {
         // Retrieve the action badge to check if the extension is 'ON' or 'OFF'
         const prevState = await chrome.action.getBadgeText({ tabId: tab.id });
+
+        await chrome.action.setBadgeBackgroundColor({ color: '#00FF00', tabId: tab.id });
         // Next state will always be the opposite
-        const nextState = prevState === 'ON' ? 'OFF' : 'ON';
+        const nextState = prevState === 'ON' ? '' : 'ON';
 
         // Set the action badge to the next state
+
         await chrome.action.setBadgeText({
             tabId: tab.id,
-            text: nextState,
+            text: nextState == 'ON' ? nextState : '',
         });
 
         if (nextState === "ON") {
@@ -45,7 +48,7 @@ chrome.action.onClicked.addListener(async (tab) => {
                     files: ["run-highlighter.js"],
                 })
                 .then(() => console.log("script injected"));
-        } else if (nextState === "OFF") {
+        } else if (nextState === "") {
             // Remove the CSS file when the user turns the extension off
             await chrome.scripting.removeCSS({
                 files: ["new-releases.css"],
