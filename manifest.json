@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
-	"name": "Highlight New Release Albums",
-	"description": "Highlights albums on the YouTube Music New Releases page.",
+	"name": "Highlight New Albums for YouTube Music",
+	"description": "Highlights albums on the YouTube Music New Releases page, so you can differentiate from Singles & EPs.",
 	"version": "1.0",
 	"permissions": ["activeTab", "scripting"],
 	"icons": {
