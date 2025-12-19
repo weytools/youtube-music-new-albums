@@ -5,24 +5,12 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 
-// const newReleaseURL = 'https://music.youtube.com/new_releases/albums'
-
-// chrome.action.onClicked.addListener(async (tab) => {
-//     const prevState = await chrome.action.getBadgeText({ tabId: tab.id });
-//     const nextState = prevState === 'ON' ? 'OFF' : 'ON';
-//     // Set the action badge to the next state
-//     await chrome.action.setBadgeText({
-//         tabId: tab.id,
-//         text: nextState,
-//     });
-// })
-
 
 const newReleaseURL = 'https://music.youtube.com/new_releases/albums'
 
 chrome.action.onClicked.addListener(async (tab) => {
     if (tab.url.startsWith(newReleaseURL)) {
-        // Retrieve the action badge to check if the extension is 'ON' or 'OFF'
+        // Retrieve the action badge to check if the extension is 'ON' or ''
         const prevState = await chrome.action.getBadgeText({ tabId: tab.id });
 
         await chrome.action.setBadgeBackgroundColor({ color: '#00FF00', tabId: tab.id });
